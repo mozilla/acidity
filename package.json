@@ -28,8 +28,8 @@
     "grunt-shell": "^0.6.4",
     "load-grunt-tasks": "^0.4.0"
   },
-  "browser": "acidity.js",
-  "main": "acidity.js",
+  "browser": "src/acidity.js",
+  "main": "src/acidity.js",
   "licence": "Apache-2.0",
   "bugs": {
     "url": "http://github.com/mozilla/acidity/issues"
