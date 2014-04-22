@@ -3,10 +3,7 @@
   "author": "Mozilla",
   "description": "Test your open source project for friendliness.",
   "keywords": [
-    "indexeddb",
-    "localstorage",
-    "storage",
-    "websql"
+    
   ],
   "version": "0.0.1",
   "homepage": "https://github.com/mozilla/acidity",
