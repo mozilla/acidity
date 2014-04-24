@@ -1,14 +1,25 @@
 #! /usr/bin/env node
 'use strict';
 
-var PWD = process.env.PWD;
-var VERSION = '0.0.1';
+var VERSION = '0.0.4';
 
 var acidity = require('../src/acidity');
 var chalk = require('chalk');
-var failedTests = [];
-var numberOfTests = Object.keys(acidity).length;
-var testResults = acidity.run(PWD);
+var nopt = require('nopt');
+
+var opts = nopt({
+    dir: String,
+    version: Boolean
+}, {
+    v: '--version'
+});
+
+if (opts.version) {
+    return console.log(chalk.blue('Mozilla acidity tests, Version ' + VERSION));
+}
+
+// Use current directory if no --dir argument is supplied.
+var testResults = acidity.run(opts.dir || process.env.PWD);
 
 for (var groupName in testResults) {
     var resultGroup = testResults[groupName];
