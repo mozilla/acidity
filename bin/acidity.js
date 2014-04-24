@@ -8,24 +8,31 @@ var acidity = require('../src/acidity');
 var chalk = require('chalk');
 var failedTests = [];
 var numberOfTests = Object.keys(acidity).length;
+var testResults = acidity.run(PWD);
 
-for (var i in acidity) {
-    var testResult = acidity[i](PWD);
-    if (testResult.passed === true) {
-        console.log(chalk.green(testResult.message));
-    } else if (testResult.passed !== false) {
-        console.log(chalk.yellow(testResult.message));
-    } else {
-        failedTests.push(testResult.message);
+for (var groupName in testResults) {
+    var resultGroup = testResults[groupName];
+
+    if (resultGroup.length) {
+        var color;
+        switch (groupName) {
+            case 'passed':
+                color = 'green';
+                break;
+            case 'failed':
+                color = 'red';
+                break;
+            case 'notices':
+                color = 'yellow';
+                break;
+        }
+
+        console.log(chalk[color](resultGroup.join("\n")));
     }
 }
 
-if (failedTests.length) {
-    console.log(chalk.red(failedTests.join("\n")));
-}
-
-console.log("Tests passed: " + (numberOfTests - failedTests.length) + '/' + numberOfTests);
-
-if (!failedTests.length) {
+if (!testResults.failed.length) {
     console.log(chalk.green("\nYay! You are a lovely open source project! 👏  👍  🎉"));
+} else {
+    console.log(chalk.red("\nTests failed: " + testResults.failed.length + '/' + Object.keys(testResults).length));
 }
