@@ -11,8 +11,10 @@ var numberOfTests = Object.keys(acidity).length;
 
 for (var i in acidity) {
     var testResult = acidity[i](PWD);
-    if (testResult.passed) {
+    if (testResult.passed === true) {
         console.log(chalk.green(testResult.message));
+    } else if (testResult.passed !== false) {
+        console.log(chalk.yellow(testResult.message));
     } else {
         failedTests.push(testResult.message);
     }

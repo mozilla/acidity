@@ -20,8 +20,8 @@ function test(workingDirectory) {
     }
 
     return {
-        message: 'Too many files on the root directory: ' + fileListLength + '. Cognitive overload detected!',
-        passed: false
+        message: 'You have ' + fileListLength + ' files in the root directory:\nmaybe you can try moving your files into folders?',
+        passed: null
     };
 }
 
