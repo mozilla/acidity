@@ -14,7 +14,7 @@ function test(workingDirectory) {
         for (var option in REQUIRED_FOLDERS[i]) {
             if (shell.test('-d', REQUIRED_FOLDERS[i][option])) {
                 return {
-                    message: '"' + i + '" folder exists!',
+                    message: 'Proper folder structure exists!',
                     passed: true
                 };
             } else {

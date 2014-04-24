@@ -3,22 +3,26 @@ var shell = require('shelljs');
 function test(workingDirectory) {
     shell.cd(workingDirectory);
 
-    var fileListLength = shell.ls(workingDirectory).length;
+    var fileListLength = 0;
 
-    if(fileListLength < 8) {
+    shell.ls(workingDirectory).forEach(function(file) {
+        // Only count files, not folders.
+        if (shell.test('-f', file)) {
+            fileListLength++;
+        }
+    });
 
-      return {
-          message: 'Not too many files on the root directory',
-          passed: true
-      };
-
+    if (fileListLength < 8) {
+        return {
+            message: 'Not too many files on the root directory',
+            passed: true
+        };
     }
 
     return {
-      message: 'Too many files on the root directory: ' + fileListLength + '. Cognitive overload detected!',
-        passed: false
+        message: 'You have ' + fileListLength + ' files in the root directory:\nmaybe you can try moving your files into folders?',
+        passed: null
     };
-	
 }
 
 module.exports = test;
