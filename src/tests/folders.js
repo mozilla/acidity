@@ -1,7 +1,7 @@
 var shell = require('shelljs');
 
 var REQUIRED_FOLDERS = {
-    dist: ["dist"],
+    dist: ["bin", "build", "dist"],
     examples: ["examples"],
     src: ["src"],
     test: ["test", "tests"]
