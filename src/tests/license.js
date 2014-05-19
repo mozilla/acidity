@@ -1,6 +1,8 @@
 var shell = require('shelljs');
 
 var LICENSE_NAMES = [
+    "LICENCE",
+    "LICENCE.txt",
     "LICENSE",
     "LICENSE.txt"
 ];
